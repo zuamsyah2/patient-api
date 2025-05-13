@@ -6,9 +6,9 @@ use Illuminate\Support\Facades\Route;
 Route::middleware(['check.apikey'])
     ->name('api.')
     ->group(function () {
-        Route::post('/users', [PatientController::class, 'create'])->name('users.create');
-        Route::put('/users/{id}', [PatientController::class, 'update'])->name('users.update');
-        Route::delete('/users/{id}', [PatientController::class, 'delete'])->name('users.delete');
-        Route::get('/users', [PatientController::class, 'get'])->name('users.get');
-        Route::get('/users/{id}', [PatientController::class, 'getById'])->name('users.getById');
+        Route::post('/patients', [PatientController::class, 'create'])->name('patients.create');
+        Route::put('/patients/{id}', [PatientController::class, 'update'])->name('patients.update');
+        Route::delete('/patients/{id}', [PatientController::class, 'delete'])->name('patients.delete');
+        Route::get('/patients', [PatientController::class, 'get'])->name('patients.get');
+        Route::get('/patients/{id}', [PatientController::class, 'getById'])->name('patients.getById');
     });
