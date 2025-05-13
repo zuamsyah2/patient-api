@@ -4,16 +4,24 @@ namespace App\Http\Controllers\API;
 
 use App\Constants\MessageConstants;
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use App\Models\Patient;
 use Illuminate\Http\Request;
 
 class PatientController extends Controller
 {
     public function create(Request $request) {
+        if(is_null(User::where('id', $request->user_id)->first())) {
+            return response()->json([
+                'status' => 404,
+                'message' => 'User not found'
+            ], 404);
+        }
+
         if(Patient::where('user_id', $request->user_id)->first()) {
             return response()->json([
                 'status' => 422,
-                'message' => 'User already exist'
+                'message' => 'Patient already exist'
             ], 422);
         }
 
