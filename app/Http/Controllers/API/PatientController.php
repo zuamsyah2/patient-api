@@ -10,6 +10,13 @@ use Illuminate\Http\Request;
 class PatientController extends Controller
 {
     public function create(Request $request) {
+        if(Patient::where('user_id', $request->user_id)->first()) {
+            return response()->json([
+                'status' => 422,
+                'message' => 'User already exist'
+            ], 422);
+        }
+
         $data = [
             'user_id' => $request->user_id,
             'medium_acquition' => $request->medium_acquition,
