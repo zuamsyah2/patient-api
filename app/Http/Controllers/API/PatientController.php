@@ -18,13 +18,6 @@ class PatientController extends Controller
             ], 404);
         }
 
-        if(Patient::where('user_id', $request->user_id)->first()) {
-            return response()->json([
-                'status' => 422,
-                'message' => 'Patient already exist'
-            ], 422);
-        }
-
         $data = [
             'user_id' => $request->user_id,
             'medium_acquition' => $request->medium_acquition,
